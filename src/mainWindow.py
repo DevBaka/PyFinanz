@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QAction
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import QCoreApplication
 
@@ -11,6 +11,18 @@ class mainWindow(object):
         mW.setGeometry(50,50,500,500)
         mW.setWindowTitle("Moomas Finanzen")
         mW.setWindowIcon(QIcon("static/RDS.png"))
+        
+        extractAction = QAction("&baka!!!", mW)
+        extractAction.setShortcut("Ctrl+Q")
+        extractAction.setStatusTip("Leave the App")
+        extractAction.triggered.connect(self.close_application)
+        
+        mW.statusBar()
+        
+        mainMenu = mW.menuBar()
+        fileMenu = mainMenu.addMenu("&File")
+        fileMenu.addAction(extractAction)
+        
         self.test(mW)
         
     def test(self, mW):
